@@ -1,3 +1,14 @@
+"""
+
+This code is for converting the text to the voice.
+
+
+First the user will be comming in the app and it will tap on the voice button to record that voice and accordingly it
+will translate it to the text
+
+"""
+
+
 import speech_recognition as sr
 
 recognizer = sr.Recognizer()
@@ -15,7 +26,7 @@ def transcribe_audio(audio_file_path):
         return f"Could not request results "
 
 
-audio_file_path = "/content/rec1.wav"
+audio_file_path = "rec1.wav"
 
 transcribed_text = transcribe_audio(audio_file_path)
 

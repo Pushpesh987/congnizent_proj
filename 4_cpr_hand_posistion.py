@@ -1,3 +1,12 @@
+"""
+In this we are detecting the correct hand posistions for the cpr
+
+
+After getting the step by step instructions it will check the user, that the user is following 
+step by step instruction based upon the predicted disease or symptoms
+
+"""
+
 import cv2
 import mediapipe as mp
 

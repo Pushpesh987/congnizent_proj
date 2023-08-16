@@ -1,3 +1,10 @@
+"""
+
+this code is for checking the model accuracy
+
+
+"""
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -12,7 +19,7 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 
 
-df = pd.read_csv("/content/drive/MyDrive/Health.csv")
+df = pd.read_csv("Health.csv")
 df['Symptoms'] = df['Symptoms'].str.lower()  
 
 

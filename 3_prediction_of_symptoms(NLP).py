@@ -1,3 +1,10 @@
+"""
+This code is for the prediction of the symptoms
+
+whatever voice which is been converted into the text it will predict the disease
+
+"""
+
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -9,11 +16,9 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-# Load and preprocess the dataset
-df = pd.read_csv("/content/drive/MyDrive/Health.csv")
-df['Symptoms'] = df['Symptoms'].str.lower()  # Convert to lowercase
+df = pd.read_csv("Health.csv")
+df['Symptoms'] = df['Symptoms'].str.lower() 
 
-# Define disease labels and map them to integers
 disease_mapping = {
     'HeartDisease': 0,
     'JointDislocation': 1,
@@ -21,7 +26,6 @@ disease_mapping = {
     'SnakeBite': 3
 }
 
-# Preprocess text data
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
@@ -33,16 +37,13 @@ def preprocess_text(text):
 
 df['preprocessed_Symptoms'] = df['Symptoms'].apply(preprocess_text)
 
-# Create TF-IDF features
 vectorizer = TfidfVectorizer(max_features=1000)
 X = vectorizer.fit_transform(df['preprocessed_Symptoms'])
 y = df['Disease'].map(disease_mapping)
 
-# Train a Naive Bayes classifier
 clf = MultinomialNB()
 clf.fit(X, y)
 
-# User input and prediction
 while True:
     user_input = input("Enter your Symptoms (or 'exit' to quit): ").lower()
     if user_input == 'exit':
@@ -54,7 +55,4 @@ while True:
         if label == predicted_disease:
             print(f"Predicted disease: {disease}")
             break
-
-# This is text which we will be giving
-#The person is having the shortness of the breath, and  he is having the irregular heartbeat, and he is sweting too much, his facial expression is also changed 
 
